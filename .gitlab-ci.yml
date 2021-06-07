@@ -10,26 +10,18 @@ cache:
     - .m2/repository
 
 setup:
-  stage: setup
+  stage: .pre
   script:
     - echo "Cleaning output directories"
     - 'mvn $MAVEN_CLI_OPTS clean'   
 
-build:
+build-tests:
   stage: build
   script:
     - echo "Compiling changes from $CI_JOB_NAME:$CI_COMMIT_SHORT_SHA"
     - 'mvn $MAVEN_CLI_OPTS compile'   
 
-# For merge requests do not `deploy` but only run `verify`.
-.verify: &verify
-  stage: test
+test-api:
   script:
-    - 'mvn $MAVEN_CLI_OPTS verify'
-  except:
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-
-# Verify merge requests using JDK8
-verify:jdk8:
-  <<: *verify
+    - echo "Starting API tests execution"
+    - 'mvn $MAVEN_CLI_OPTS verify' 
