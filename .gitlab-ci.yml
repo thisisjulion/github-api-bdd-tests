@@ -40,11 +40,15 @@ test-api:
     reports:
       junit:
         - target/surefire-reports/TEST-*.xml  
+  only:
+    - schedules
+    - web      
 
 serenity-report:
   stage: report
   only:
-    - master
+    - schedules
+    - web
   script:
     - mkdir public
     - mv target/site/serenity/* public
