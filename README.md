@@ -10,7 +10,7 @@
 **How to install**
 - checkout repository
 - open console in the repository folder location 
-- run `mvn install`
+- run `mvn -DskipTests test-compile`
 
 **How to run tests**
 
