@@ -1,4 +1,4 @@
-package com.github.api.steps.repository.model;
+package com.github.api.framework.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

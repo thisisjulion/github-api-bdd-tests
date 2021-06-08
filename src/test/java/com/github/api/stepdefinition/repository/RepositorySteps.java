@@ -1,14 +1,26 @@
-package com.github.api.steps.repository.actions;
+package com.github.api.stepdefinition.repository;
 
-import com.github.api.steps.common.actions.BaseActions;
-import com.github.api.steps.common.model.ErrorResponse;
-import com.github.api.steps.repository.model.Repository;
+import com.github.api.framework.model.ErrorResponse;
+import com.github.api.framework.model.Repository;
+import com.github.api.framework.service.ApiClient;
 import io.restassured.response.ValidatableResponse;
 
-public class RepositoryActions extends BaseActions {
+import java.util.Optional;
+
+public class RepositorySteps {
     private String repositoryPath;
     private ValidatableResponse validatableResponse;
+    private ApiClient apiClient;
 
+    public RepositorySteps() {
+        apiClient = new ApiClient();
+    }
+
+    /**
+     * Set repository path
+     *
+     * @param path the path
+     */
     public void setRepositoryPath(String path) {
         this.repositoryPath = path;
     }
@@ -20,8 +32,8 @@ public class RepositoryActions extends BaseActions {
      * @return the created Repository
      */
     public Repository createValidRepository(Repository repository) {
-        validatableResponse = create(repositoryPath, repository);
-        return getObjectFromResponse(validatableResponse, Repository.class);
+        validatableResponse = apiClient.create(repositoryPath, repository);
+        return apiClient.getObjectFromResponse(validatableResponse, Repository.class);
     }
 
     /**
@@ -31,8 +43,8 @@ public class RepositoryActions extends BaseActions {
      * @return the error response
      */
     public ErrorResponse createInvalidRepository(Repository repository) {
-        validatableResponse = create(repositoryPath, repository);
-        return getObjectFromResponse(validatableResponse, ErrorResponse.class);
+        validatableResponse = apiClient.create(repositoryPath, repository);
+        return apiClient.getObjectFromResponse(validatableResponse, ErrorResponse.class);
     }
 
     /**
@@ -42,8 +54,8 @@ public class RepositoryActions extends BaseActions {
      * @return the updated Repository
      */
     public Repository updateRepositoryWithValidData(Repository repository) {
-        validatableResponse = patch(repositoryPath, repository);
-        return getObjectFromResponse(validatableResponse, Repository.class);
+        validatableResponse = apiClient.patch(repositoryPath, repository);
+        return apiClient.getObjectFromResponse(validatableResponse, Repository.class);
     }
 
     /**
@@ -53,8 +65,8 @@ public class RepositoryActions extends BaseActions {
      * @return the error response
      */
     public ErrorResponse updateRepositoryWithInvalidData(Repository repository) {
-        validatableResponse = patch(repositoryPath, repository);
-        return getObjectFromResponse(validatableResponse, ErrorResponse.class);
+        validatableResponse = apiClient.patch(repositoryPath, repository);
+        return apiClient.getObjectFromResponse(validatableResponse, ErrorResponse.class);
     }
 
     /**
@@ -63,8 +75,8 @@ public class RepositoryActions extends BaseActions {
      * @return the Repository
      */
     public Repository readExistingRepository() {
-        validatableResponse = read(repositoryPath);
-        return getObjectFromResponse(validatableResponse, Repository.class);
+        validatableResponse = apiClient.read(repositoryPath);
+        return apiClient.getObjectFromResponse(validatableResponse, Repository.class);
     }
 
     /**
@@ -74,8 +86,8 @@ public class RepositoryActions extends BaseActions {
      * @return the ErrorResponse
      */
     public ErrorResponse readNonExistingRepository(String repositoryPath) {
-        validatableResponse = read(repositoryPath);
-        return getObjectFromResponse(validatableResponse, ErrorResponse.class);
+        validatableResponse = apiClient.read(repositoryPath);
+        return apiClient.getObjectFromResponse(validatableResponse, ErrorResponse.class);
     }
 
     /**
@@ -84,7 +96,7 @@ public class RepositoryActions extends BaseActions {
      * @param repositoryPath the path
      */
     public void deleteRepository(String repositoryPath) {
-        validatableResponse = delete(repositoryPath);
+        validatableResponse = apiClient.delete(repositoryPath);
     }
 
     /**
@@ -94,11 +106,18 @@ public class RepositoryActions extends BaseActions {
      * @return the ErrorResponse
      */
     public ErrorResponse deleteNonExistingRepository(String repositoryPath) {
-        validatableResponse = delete(repositoryPath);
-        return getObjectFromResponse(validatableResponse, ErrorResponse.class);
+        validatableResponse = apiClient.delete(repositoryPath);
+        return apiClient.getObjectFromResponse(validatableResponse, ErrorResponse.class);
     }
 
-    public void verifyStatusCode(int expectedStatusCode) {
-        verifyStatusCode(validatableResponse, expectedStatusCode);
+    /**
+     * Get status code from response
+     *
+     * @return status code as int
+     */
+    public int getStatusCodeFromResponse() {
+        return Optional.ofNullable(validatableResponse)
+                .map(it -> it.extract().statusCode())
+                .orElse(-1);
     }
 }

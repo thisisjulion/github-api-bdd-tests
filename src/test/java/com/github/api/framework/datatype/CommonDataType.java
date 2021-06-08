@@ -1,11 +1,11 @@
-package com.github.api.steps.common.datatype;
+package com.github.api.framework.datatype;
 
-import com.github.api.steps.common.model.ErrorResponse;
+import com.github.api.framework.model.ErrorResponse;
 import io.cucumber.java.DataTableType;
 
 import java.util.Map;
 
-public class CommonDataTypes {
+public class CommonDataType {
 
     @DataTableType
     public ErrorResponse.Error errorEntry(Map<String, String> entry) {

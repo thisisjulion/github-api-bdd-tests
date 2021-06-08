@@ -1,11 +1,11 @@
-package com.github.api.steps.repository.datatype;
+package com.github.api.framework.datatype;
 
-import com.github.api.steps.repository.model.Repository;
+import com.github.api.framework.model.Repository;
 import io.cucumber.java.DataTableType;
 
 import java.util.Map;
 
-public class RepositoryDataTypes {
+public class RepositoryDataType {
     @DataTableType(replaceWithEmptyString = "[blank]")
     public Repository repositoryEntry(Map<String, String> entry) {
         return new Repository(

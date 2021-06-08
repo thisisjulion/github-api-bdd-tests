@@ -1,14 +1,10 @@
-package com.github.api.steps.common.actions;
+package com.github.api.framework.service;
 
 import io.restassured.response.ValidatableResponse;
-import org.assertj.core.api.SoftAssertions;
 
-import java.util.List;
+import static com.github.api.framework.extension.RestAssuredExtension.givenUserBasicAuthorization;
 
-import static com.github.api.framework.extensions.RestAssuredExtensions.givenUserBasicAuthorization;
-
-public class BaseActions {
-    public static SoftAssertions softAssertions = new SoftAssertions();
+public class ApiClient {
 
     /**
      * POST request with possibility to provide path and object to be created
@@ -18,7 +14,7 @@ public class BaseActions {
      * @param objectToCreate object to create
      * @return ValidatableResponse the response
      */
-    protected ValidatableResponse create(String path, Object objectToCreate) {
+    public ValidatableResponse create(String path, Object objectToCreate) {
         return givenUserBasicAuthorization().body(objectToCreate)
                 .when().post(path)
                 .then();
@@ -30,7 +26,7 @@ public class BaseActions {
      * @param path path
      * @return ValidatableResponse the response
      */
-    protected ValidatableResponse read(String path) {
+    public ValidatableResponse read(String path) {
         return givenUserBasicAuthorization()
                 .when().get(path)
                 .then();
@@ -44,7 +40,7 @@ public class BaseActions {
      * @param objectToUpdate object to update
      * @return ValidatableResponse the response
      */
-    protected ValidatableResponse patch(String path, Object objectToUpdate) {
+    public ValidatableResponse patch(String path, Object objectToUpdate) {
         return givenUserBasicAuthorization().body(objectToUpdate)
                 .when().patch(path)
                 .then();
@@ -56,25 +52,21 @@ public class BaseActions {
      * @param path path
      * @return ValidatableResponse the response
      */
-    protected ValidatableResponse delete(String path) {
+    public ValidatableResponse delete(String path) {
         return givenUserBasicAuthorization()
                 .when().delete(path)
                 .then();
     }
 
-    public <T> void verifyObject(T expectedObject, T actualObject) {
-        softAssertions.assertThat(actualObject).isEqualTo(expectedObject);
-    }
-
-    public <T> void verifyListOfObjects(List<T> expectedList, List<T> actualList) {
-        softAssertions.assertThat(actualList).isEqualTo(expectedList);
-    }
-
-    public void verifyStatusCode(ValidatableResponse validatableResponse, int expectedStatusCode) {
-        softAssertions.assertThat(validatableResponse.extract().statusCode()).isEqualTo(expectedStatusCode);
-    }
-
-    protected <T> T getObjectFromResponse(ValidatableResponse validatableResponse,
+    /**
+     * Get object from response
+     *
+     * @param validatableResponse the validatable response
+     * @param clazz class of object
+     * @param <T> the generic
+     * @return the object
+     */
+    public  <T> T getObjectFromResponse(ValidatableResponse validatableResponse,
                                           Class<T> clazz) {
         return validatableResponse.extract().body().as(clazz);
     }
