@@ -14,13 +14,7 @@
 
 **How to run tests**
 
-- open com.github.api.TestRunner and configure parameters in @CucumberOptions
-
-_features_ - to run tests by feature folders
-
-_tags_ - to run tests by tags (tags should be added to each Scenario)
-
-Then there are to options:
+There are to options:
 
 _first option:_
 - open **bash-based** console (e.g. git console)
@@ -31,6 +25,12 @@ _first option:_
 _second option:_
 
 Configure IDE and provide environment variables: $AUTH_BASIC_USERNAME$, $AUTH_BASIC_TOKEN$
+
+_Potential improvements:_
+In case we want to use cucumbers features and tags to controll scope of tests to be run, we should:
+- mark appropriate tests scenarios with tags (e.g. @Smoke) in file.feature
+- update test.sh file with `mvn clean verify -Dcucumber.options="--tags @Smoke"`
+- run `sh test.sh {username} {token} {cucumber options}`
 
 **How to write new tests**
 - create new file.feature new others .feature files
