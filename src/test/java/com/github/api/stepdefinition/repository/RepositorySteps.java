@@ -4,25 +4,18 @@ import com.github.api.framework.model.ErrorResponse;
 import com.github.api.framework.model.Repository;
 import com.github.api.framework.service.ApiClient;
 import io.restassured.response.ValidatableResponse;
+import lombok.Setter;
 
 import java.util.Optional;
 
 public class RepositorySteps {
+    @Setter
     private String repositoryPath;
     private ValidatableResponse validatableResponse;
-    private ApiClient apiClient;
+    private final ApiClient apiClient;
 
     public RepositorySteps() {
         apiClient = new ApiClient();
-    }
-
-    /**
-     * Set repository path
-     *
-     * @param path the path
-     */
-    public void setRepositoryPath(String path) {
-        this.repositoryPath = path;
     }
 
     /**

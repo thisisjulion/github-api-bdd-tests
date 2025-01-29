@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = "pretty",
         monochrome = true,
-        glue = {"com.github.api.stepdefinition", "com.github.api.framework.datatype"},
+        glue = {"com.github.api.stepdefinition.repository", "com.github.api.framework.datatype"},
         features = {"src/test/resources/com.github.api.features.repository"}
 )
 public class TestRunner extends SetupTest {

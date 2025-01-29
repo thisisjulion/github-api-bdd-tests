@@ -7,7 +7,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.thucydides.core.annotations.Steps;
+import net.serenitybdd.annotations.Steps;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.SoftAssertions;
 
@@ -16,7 +16,7 @@ import java.util.List;
 public class RepositoryStepDefinitions {
     private Repository createdRepository;
     private ErrorResponse errorResponse;
-    private SoftAssertions softAssertions;
+    private final SoftAssertions softAssertions;
 
     public RepositoryStepDefinitions() {
         softAssertions = new SoftAssertions();

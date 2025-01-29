@@ -1,0 +1,57 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+ext {
+    cucumberVersion = '7.20.1'
+    jacksonVersion = '2.12.3'
+    junitVersion = '4.13.2'
+    assertjVersion = '3.24.2'
+    restAssuredVersion = '4.5.1'
+    lombokVersion = '1.18.36'
+    serenityVersion = '4.2.7'
+}
+
+dependencies {
+    // Core dependencies
+    implementation "io.cucumber:cucumber-java:$cucumberVersion"
+    implementation "net.serenity-bdd:serenity-rest-assured:$serenityVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+
+    // Test dependencies
+    testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-cucumber6:2.6.0"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+    testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+
+    // Lombok
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    testImplementation "org.projectlombok:lombok:$lombokVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+}
+
+group = 'com.github.api'
+version = '1.0-SNAPSHOT'
+description = 'github-api-bdd-tests'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+// Encoding settings
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(Javadoc).configureEach { options.encoding = 'UTF-8' }
