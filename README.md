@@ -2,7 +2,7 @@
 
 **Documentation**
 
-This repository is an example of how to write BDD tests using Cucumber and RestAssured for scenario definitions and Serenity BDD for generating detailed reports. 
+This project is an example of how to write BDD tests using Cucumber and RestAssured for scenario definitions and Serenity BDD for generating detailed reports. It contains minimal implementation to cover the basic API scenarios.
 The tests are based on public api of github - https://api.github.com
 
 **How to write new tests**
