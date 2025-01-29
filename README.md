@@ -1,36 +1,9 @@
 # github-api-bdd-tests
 
-**Project status**
-
-[![pipeline status](https://gitlab.com/rekunjulia/github-api-bdd-tests/badges/main/pipeline.svg)](https://gitlab.com/rekunjulia/github-api-bdd-tests/-/commits/main)
-
-
 **Documentation**
 
-**How to install**
-- checkout repository
-- open console in the repository folder location 
-- run `mvn -DskipTests test-compile`
-
-**How to run tests**
-
-There are to options:
-
-_first option:_
-- open **bash-based** console (e.g. git console)
-- change directory to repository root folder
-- run `sh test.sh {username} {token}`
-- open test report located in - /target/site/serenity/index.html
-
-_second option:_
-
-Configure IDE and provide environment variables: $AUTH_BASIC_USERNAME$, $AUTH_BASIC_TOKEN$
-
-_Potential improvements:_
-In case we want to use cucumbers features and tags to controll scope of tests to be run, we should:
-- mark appropriate tests scenarios with tags (e.g. @Smoke) in file.feature
-- update test.sh file with `mvn clean verify -Dcucumber.options="--tags @Smoke"`
-- run `sh test.sh {username} {token} {cucumber options}`
+This repository is an example of how to write BDD tests using Cucumber and RestAssured for scenario definitions and Serenity BDD for generating detailed reports. 
+The tests are based on public api of github - https://api.github.com
 
 **How to write new tests**
 - create new file.feature new others .feature files
