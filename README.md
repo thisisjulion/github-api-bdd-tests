@@ -11,8 +11,6 @@ This repository contains a simple and basic example of **Behavior-Driven Develop
 - [Writing Tests](#writing-tests)
 - [Running Tests](#running-tests)
 - [Reporting](#reporting)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Project Overview
 
