@@ -26,6 +26,9 @@ gradle-app.setting
 # Java
 *.class
 
+# Ignore config files containing sensitive data
+config.properties
+
 # Log file
 *.log
 

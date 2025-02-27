@@ -1,8 +1,7 @@
 package com.github.api.framework.service;
 
+import com.github.api.framework.extension.RestAssuredExtension;
 import io.restassured.response.ValidatableResponse;
-
-import static com.github.api.framework.extension.RestAssuredExtension.givenUserBasicAuthorization;
 
 public class ApiClient {
 
@@ -15,7 +14,7 @@ public class ApiClient {
      * @return ValidatableResponse the response
      */
     public ValidatableResponse create(String path, Object objectToCreate) {
-        return givenUserBasicAuthorization().body(objectToCreate)
+        return RestAssuredExtension.login().body(objectToCreate)
                 .when().post(path)
                 .then();
     }
@@ -27,7 +26,7 @@ public class ApiClient {
      * @return ValidatableResponse the response
      */
     public ValidatableResponse read(String path) {
-        return givenUserBasicAuthorization()
+        return RestAssuredExtension.login()
                 .when().get(path)
                 .then();
     }
@@ -41,7 +40,7 @@ public class ApiClient {
      * @return ValidatableResponse the response
      */
     public ValidatableResponse patch(String path, Object objectToUpdate) {
-        return givenUserBasicAuthorization().body(objectToUpdate)
+        return RestAssuredExtension.login().body(objectToUpdate)
                 .when().patch(path)
                 .then();
     }
@@ -53,7 +52,7 @@ public class ApiClient {
      * @return ValidatableResponse the response
      */
     public ValidatableResponse delete(String path) {
-        return givenUserBasicAuthorization()
+        return RestAssuredExtension.login()
                 .when().delete(path)
                 .then();
     }

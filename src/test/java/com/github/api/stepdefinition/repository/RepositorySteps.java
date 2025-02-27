@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class RepositorySteps {
     @Setter
-    private String repositoryPath;
+    private String uri;
     private ValidatableResponse validatableResponse;
     private final ApiClient apiClient;
 
@@ -25,7 +25,7 @@ public class RepositorySteps {
      * @return the created Repository
      */
     public Repository createValidRepository(Repository repository) {
-        validatableResponse = apiClient.create(repositoryPath, repository);
+        validatableResponse = apiClient.create(uri, repository);
         return apiClient.getObjectFromResponse(validatableResponse, Repository.class);
     }
 
@@ -36,7 +36,7 @@ public class RepositorySteps {
      * @return the error response
      */
     public ErrorResponse createInvalidRepository(Repository repository) {
-        validatableResponse = apiClient.create(repositoryPath, repository);
+        validatableResponse = apiClient.create(uri, repository);
         return apiClient.getObjectFromResponse(validatableResponse, ErrorResponse.class);
     }
 
@@ -47,7 +47,7 @@ public class RepositorySteps {
      * @return the updated Repository
      */
     public Repository updateRepositoryWithValidData(Repository repository) {
-        validatableResponse = apiClient.patch(repositoryPath, repository);
+        validatableResponse = apiClient.patch(uri, repository);
         return apiClient.getObjectFromResponse(validatableResponse, Repository.class);
     }
 
@@ -58,7 +58,7 @@ public class RepositorySteps {
      * @return the error response
      */
     public ErrorResponse updateRepositoryWithInvalidData(Repository repository) {
-        validatableResponse = apiClient.patch(repositoryPath, repository);
+        validatableResponse = apiClient.patch(uri, repository);
         return apiClient.getObjectFromResponse(validatableResponse, ErrorResponse.class);
     }
 
@@ -68,7 +68,7 @@ public class RepositorySteps {
      * @return the Repository
      */
     public Repository readExistingRepository() {
-        validatableResponse = apiClient.read(repositoryPath);
+        validatableResponse = apiClient.read(uri);
         return apiClient.getObjectFromResponse(validatableResponse, Repository.class);
     }
 

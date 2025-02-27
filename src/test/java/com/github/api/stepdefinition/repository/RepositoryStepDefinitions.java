@@ -27,7 +27,7 @@ public class RepositoryStepDefinitions {
 
     @Given("user has a correct path {string}")
     public void preparePath(String path) {
-        repositorySteps.setRepositoryPath(path);
+        repositorySteps.setUri(path);
     }
 
     @When("user creates repository with next valid data")
