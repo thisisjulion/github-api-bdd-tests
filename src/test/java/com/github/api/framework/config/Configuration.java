@@ -1,22 +1,36 @@
 package com.github.api.framework.config;
 
-import java.util.Optional;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 public class Configuration {
+    private static final String CONFIG_PATH = "src/test/resources/config.properties";
 
-    public static String getConfigProperty(EnvironmentProperty property) {
-        return getConfigProperty(property.name());
+    public static String getGitHubToken() {
+        return getConfigProperty(EnvironmentProperty.GITHUB_TOKEN);
     }
 
-    public static String getConfigPropertyOrDefault(EnvironmentProperty property, String defaultValue) {
-        return getConfigPropertyOrDefault(property.name(), defaultValue);
+    public static String getUsername() {
+        return getConfigProperty(EnvironmentProperty.AUTH_BASIC_USERNAME);
     }
 
-    public static String getConfigProperty(String name) {
-        return System.getenv(name);
+    private static String getConfigProperty(EnvironmentProperty environmentProperty) {
+        String token = System.getenv(environmentProperty.name());
+        if (token == null || token.isEmpty()) {
+            token = readTokenFromProperties(environmentProperty);
+        }
+        return token;
     }
 
-    public static String getConfigPropertyOrDefault(String name, String defaultValue) {
-        return Optional.ofNullable(getConfigProperty(name)).orElse(defaultValue);
+    public static String readTokenFromProperties(EnvironmentProperty environmentProperty) {
+        Properties properties = new Properties();
+        try (FileInputStream inputStream = new FileInputStream(CONFIG_PATH)) {
+            properties.load(inputStream);
+            return properties.getProperty(environmentProperty.name());
+        } catch (IOException fileNotFoundException) {
+            System.out.println("No config.properties file found");
+            return null;
+        }
     }
 }

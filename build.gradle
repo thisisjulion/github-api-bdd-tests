@@ -9,9 +9,9 @@ repositories {
 }
 
 ext {
-    cucumberVersion = '7.20.1'
+    cucumberVersion = '7.15.0'
     jacksonVersion = '2.12.3'
-    junitVersion = '4.13.2'
+    junitVersion = '5.11.3'
     assertjVersion = '3.24.2'
     restAssuredVersion = '4.5.1'
     lombokVersion = '1.18.36'
@@ -26,9 +26,9 @@ dependencies {
 
     // Test dependencies
     testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
-    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testImplementation "net.serenity-bdd:serenity-core:$serenityVersion"
-    testImplementation "net.serenity-bdd:serenity-cucumber6:2.6.0"
+    testImplementation "net.serenity-bdd:serenity-cucumber:4.2.16"
     testImplementation "org.assertj:assertj-core:$assertjVersion"
     testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
 

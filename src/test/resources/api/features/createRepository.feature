@@ -1,5 +1,6 @@
 Feature: As a User I want to be able to create repository
 
+  @Test-1
   Scenario: User should be able to create new personal repository filling only required field
     Given user has a correct path "/user/repos"
     When user creates repository with next valid data

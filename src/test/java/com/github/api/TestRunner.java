@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         plugin = "pretty",
         monochrome = true,
         glue = {"com.github.api.stepdefinition.repository", "com.github.api.framework.datatype"},
-        features = {"src/test/resources/com.github.api.features.repository"}
+        features = {"src/test/resources/api/features"}
 )
 public class TestRunner extends SetupTest {
 }

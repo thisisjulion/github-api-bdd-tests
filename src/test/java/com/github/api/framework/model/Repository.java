@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data @AllArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Repository {
     private Boolean auto_init;
     private String description;
