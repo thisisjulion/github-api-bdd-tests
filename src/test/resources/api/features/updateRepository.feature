@@ -11,7 +11,7 @@ Feature: As a User I want to be able to update repository
     Then repository is updated
     And the repository contains all data
       | description | has_downloads | has_issues | has_wiki | homepage       | name    | fullName             | isPrivate |
-      | test        | true          | true       | true     | test home page | repoUPD | ThisIsJulion/repoUPD | true      |
+      | test        | true          | true       | true     | test home page | repoUPD | {your_github_name}/repoUPD | true      |
 
   Scenario: User should be able to update created repository changing all possible fields
     Given user has a correct path "/user/repos"
@@ -24,7 +24,7 @@ Feature: As a User I want to be able to update repository
     Then repository is updated
     And the repository contains all data
       | description | has_downloads | has_issues | has_wiki | homepage           | name    | fullName             | isPrivate |
-      | testUPD     | true          | true       | true     | test home page UPD | repoUPD | ThisIsJulion/repoUPD | true      |
+      | testUPD     | true          | true       | true     | test home page UPD | repoUPD | {your_github_name}/repoUPD | true      |
 
   Scenario: User should not able to update created repository providing too short name field
     Given user has a correct path "/user/repos"
@@ -49,4 +49,4 @@ Feature: As a User I want to be able to update repository
     Then repository is updated
     And the repository contains all data
       | description | has_downloads | has_issues | has_wiki | homepage       | name | fullName          | isPrivate |
-      | test        | false         | false      | false    | test home page | repo | ThisIsJulion/repo | false     |
+      | test        | false         | false      | false    | test home page | repo | {your_github_name}/repo | false     |
