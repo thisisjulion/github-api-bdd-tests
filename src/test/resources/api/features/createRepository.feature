@@ -9,7 +9,7 @@ Feature: As a User I want to be able to create repository
     Then repository is created
     And the repository contains all data
       | has_downloads | has_issues | has_wiki | name             | fullName                      | isPrivate |
-      | true          | true       | true     | repoOnlyRequired | ThisIsJulion/repoOnlyRequired | false     |
+      | true          | true       | true     | repoOnlyRequired | {your_github_name}/repoOnlyRequired | false     |
 
   Scenario: User should be able to create new personal repository filling all fields
     Given user has a correct path "/user/repos"
@@ -19,7 +19,7 @@ Feature: As a User I want to be able to create repository
     Then repository is created
     And the repository contains all data
       | description | has_downloads | has_issues | has_wiki | homepage       | name     | fullName              | isPrivate |
-      | test        | false         | false      | false    | test home page | repoFull | ThisIsJulion/repoFull | true      |
+      | test        | false         | false      | false    | test home page | repoFull | {your_github_name}/repoFull | true      |
 
   Scenario: User should not be able to create new repository missing required field
     Given user has a correct path "/user/repos"

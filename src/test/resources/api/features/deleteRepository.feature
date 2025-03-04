@@ -12,6 +12,6 @@ Feature: As a User I want to be able to delete repository
       |  |  |
 
   Scenario: User should not able to delete un-existing repository
-    When user deletes the un-existing repository "/thisisjulion/none"
+    When user deletes the un-existing repository "/{your_github_name}/none"
     Then 404 status code and "Not Found" message are returned with next errors
       |  |  |
